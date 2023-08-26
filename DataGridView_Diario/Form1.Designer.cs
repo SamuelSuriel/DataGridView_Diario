@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             dgvDiario = new DataGridView();
-            Cuenta = new DataGridViewTextBoxColumn();
-            NombreCuenta = new DataGridViewTextBoxColumn();
-            Débito = new DataGridViewTextBoxColumn();
-            Crédito = new DataGridViewTextBoxColumn();
+            tblCuenta = new DataGridViewTextBoxColumn();
+            tblNombreCuenta = new DataGridViewTextBoxColumn();
+            tblDebito = new DataGridViewTextBoxColumn();
+            tblCredito = new DataGridViewTextBoxColumn();
             btnAgregar = new Button();
             label1 = new Label();
             label2 = new Label();
@@ -51,105 +51,115 @@
             // 
             // dgvDiario
             // 
+            dgvDiario.AllowUserToOrderColumns = true;
+            dgvDiario.BackgroundColor = Color.LimeGreen;
             dgvDiario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDiario.Columns.AddRange(new DataGridViewColumn[] { Cuenta, NombreCuenta, Débito, Crédito });
-            dgvDiario.Location = new Point(30, 131);
+            dgvDiario.Columns.AddRange(new DataGridViewColumn[] { tblCuenta, tblNombreCuenta, tblDebito, tblCredito });
+            dgvDiario.Location = new Point(81, 131);
             dgvDiario.Name = "dgvDiario";
             dgvDiario.RowHeadersWidth = 51;
             dgvDiario.RowTemplate.Height = 29;
-            dgvDiario.Size = new Size(729, 288);
+            dgvDiario.Size = new Size(629, 288);
             dgvDiario.TabIndex = 0;
-            dgvDiario.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Cuenta
+            // tblCuenta
             // 
-            Cuenta.HeaderText = "Cuenta";
-            Cuenta.MinimumWidth = 6;
-            Cuenta.Name = "Cuenta";
-            Cuenta.Width = 125;
+            tblCuenta.HeaderText = "Cuenta";
+            tblCuenta.MinimumWidth = 6;
+            tblCuenta.Name = "tblCuenta";
+            tblCuenta.Width = 125;
             // 
-            // NombreCuenta
+            // tblNombreCuenta
             // 
-            NombreCuenta.HeaderText = "Nombre Cuenta";
-            NombreCuenta.MinimumWidth = 6;
-            NombreCuenta.Name = "NombreCuenta";
-            NombreCuenta.Width = 125;
+            tblNombreCuenta.HeaderText = "Nombre Cuenta";
+            tblNombreCuenta.MinimumWidth = 6;
+            tblNombreCuenta.Name = "tblNombreCuenta";
+            tblNombreCuenta.Width = 200;
             // 
-            // Débito
+            // tblDebito
             // 
-            Débito.HeaderText = "Débito";
-            Débito.MinimumWidth = 6;
-            Débito.Name = "Débito";
-            Débito.Width = 125;
+            tblDebito.HeaderText = "Débito";
+            tblDebito.MinimumWidth = 6;
+            tblDebito.Name = "tblDebito";
+            tblDebito.Width = 125;
             // 
-            // Crédito
+            // tblCredito
             // 
-            Crédito.HeaderText = "Crédito";
-            Crédito.MinimumWidth = 6;
-            Crédito.Name = "Crédito";
-            Crédito.Width = 125;
+            tblCredito.HeaderText = "Crédito";
+            tblCredito.MinimumWidth = 6;
+            tblCredito.Name = "tblCredito";
+            tblCredito.Width = 125;
             // 
             // btnAgregar
             // 
-            btnAgregar.Location = new Point(681, 80);
+            btnAgregar.BackColor = Color.Red;
+            btnAgregar.Font = new Font("Lucida Sans", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAgregar.ForeColor = Color.Navy;
+            btnAgregar.Location = new Point(671, 79);
             btnAgregar.Name = "btnAgregar";
-            btnAgregar.Size = new Size(94, 29);
+            btnAgregar.Size = new Size(107, 30);
             btnAgregar.TabIndex = 1;
             btnAgregar.Text = "Agregar";
-            btnAgregar.UseVisualStyleBackColor = true;
+            btnAgregar.UseVisualStyleBackColor = false;
             btnAgregar.Click += btnAgregar_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(31, 28);
+            label1.Font = new Font("Lucida Sans", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(30, 53);
             label1.Name = "label1";
-            label1.Size = new Size(55, 20);
+            label1.Size = new Size(85, 23);
             label1.TabIndex = 2;
             label1.Text = "Cuenta";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(162, 28);
+            label2.Font = new Font("Lucida Sans", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(121, 53);
             label2.Name = "label2";
-            label2.Size = new Size(114, 20);
+            label2.Size = new Size(174, 23);
             label2.TabIndex = 3;
             label2.Text = "Nombre Cuenta";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(403, 28);
+            label3.Font = new Font("Lucida Sans", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(374, 53);
             label3.Name = "label3";
-            label3.Size = new Size(39, 20);
+            label3.Size = new Size(57, 23);
             label3.TabIndex = 4;
             label3.Text = "Tipo";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(520, 28);
+            label4.Font = new Font("Lucida Sans", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(540, 53);
             label4.Name = "label4";
-            label4.Size = new Size(53, 20);
+            label4.Size = new Size(79, 23);
             label4.TabIndex = 5;
             label4.Text = "Monto";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(505, 432);
+            label5.Font = new Font("Lucida Sans", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.Location = new Point(436, 422);
             label5.Name = "label5";
-            label5.Size = new Size(92, 20);
+            label5.Size = new Size(118, 19);
             label5.TabIndex = 6;
             label5.Text = "Total Débito";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(646, 432);
+            label6.Font = new Font("Lucida Sans", 10.2F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.Location = new Point(585, 422);
             label6.Name = "label6";
-            label6.Size = new Size(95, 20);
+            label6.Size = new Size(124, 19);
             label6.TabIndex = 7;
             label6.Text = "Total Crédito";
             // 
@@ -176,15 +186,17 @@
             // 
             // txtTtDebito
             // 
-            txtTtDebito.Location = new Point(493, 464);
+            txtTtDebito.Location = new Point(436, 448);
             txtTtDebito.Name = "txtTtDebito";
+            txtTtDebito.ReadOnly = true;
             txtTtDebito.Size = new Size(125, 27);
             txtTtDebito.TabIndex = 11;
             // 
             // txtTtCredito
             // 
-            txtTtCredito.Location = new Point(634, 464);
+            txtTtCredito.Location = new Point(585, 448);
             txtTtCredito.Name = "txtTtCredito";
+            txtTtCredito.ReadOnly = true;
             txtTtCredito.Size = new Size(125, 27);
             txtTtCredito.TabIndex = 12;
             // 
@@ -201,6 +213,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.IndianRed;
             ClientSize = new Size(800, 503);
             Controls.Add(cbTipo);
             Controls.Add(txtTtCredito);
@@ -217,7 +230,9 @@
             Controls.Add(btnAgregar);
             Controls.Add(dgvDiario);
             Name = "Form1";
-            Text = "Form1";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Registro";
             ((System.ComponentModel.ISupportInitialize)dgvDiario).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -243,5 +258,9 @@
         private DataGridViewTextBoxColumn NombreCuenta;
         private DataGridViewTextBoxColumn Débito;
         private DataGridViewTextBoxColumn Crédito;
+        private DataGridViewTextBoxColumn tblCuenta;
+        private DataGridViewTextBoxColumn tblNombreCuenta;
+        private DataGridViewTextBoxColumn tblDebito;
+        private DataGridViewTextBoxColumn tblCredito;
     }
 }

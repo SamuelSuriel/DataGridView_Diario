@@ -1,3 +1,5 @@
+using DataGridView_Diario.Models;
+
 namespace DataGridView_Diario
 {
     public partial class Form1 : Form
@@ -9,35 +11,44 @@ namespace DataGridView_Diario
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            string tipo = cbTipo.SelectedItem.ToString();
-            decimal monto = decimal.Parse(txtMonto.Text);
-
-            if (tipo != null)
+            try
             {
-                if (tipo == "Débito")
+                EntradaDiario entradaDiario = new EntradaDiario
                 {
-                    dgvDiario.Rows.Add(tipo, monto, "");
-                    totalDebito += monto;
+                    Tipo = cbTipo.SelectedItem.ToString(),
+                    Monto = decimal.Parse(txtMonto.Text),
+                    Cuenta = txtCuenta.Text,
+                    NombreCuenta = txtNombreCuenta.Text
+                };
+
+                if (entradaDiario.Tipo != null)
+                {
+                    if (entradaDiario.Tipo == "Débito")
+                    {
+                        dgvDiario.Rows.Add(entradaDiario.Cuenta, entradaDiario.NombreCuenta, entradaDiario.Monto, "0");
+                        totalDebito += entradaDiario.Monto;
+                    }
+                    else
+                    {
+                        dgvDiario.Rows.Add(entradaDiario.Cuenta, entradaDiario.NombreCuenta, "0", entradaDiario.Monto);
+                        totalCredito += entradaDiario.Monto;
+                    }
                 }
                 else
                 {
-                    dgvDiario.Rows.Add(tipo, "", monto);
-                    totalCredito += monto;
+                    MessageBox.Show("Ingrese el tipo!");
                 }
+
+                ActualizarTotales();
+                Limpiar();
             }
-           
-            ActualizarTotales();
-            txtCuenta.Text = "";
-            txtMonto.Text = "";
-            txtNombreCuenta.Text = "";
-            cbTipo.SelectedItem = 0;
+            catch (Exception)
+            {
+                MessageBox.Show("Ups, Ha ocurrido un error!");
+                throw;
+            }
         }
         private void ActualizarTotales()
         {
@@ -45,14 +56,19 @@ namespace DataGridView_Diario
             txtTtCredito.Text = totalCredito.ToString();
         }
 
-
+        private void Limpiar()
+        {
+            txtCuenta.Clear();
+            txtMonto.Clear();
+            txtNombreCuenta.Clear();
+            cbTipo.Text = "";
+        }
         private void dgvDiario_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
         {
-            string tipo = e.Row.Cells[0].Value.ToString();
-            decimal monto = decimal.Parse(e.Row.Cells[tipo == "Débito" ? 1 : 2].Value.ToString());
+            var tipo = cbTipo.SelectedItem.ToString();
+            decimal monto = decimal.Parse(e.Row.Cells[tipo == "Debito" ? 1 : 2].Value.ToString());
 
-
-            if (tipo == "Débito")
+            if (tipo == "Debito")
             {
                 totalDebito -= monto;
             }
@@ -60,9 +76,8 @@ namespace DataGridView_Diario
             {
                 totalCredito -= monto;
             }
-
-
             ActualizarTotales();
         }
+
     }
 }
